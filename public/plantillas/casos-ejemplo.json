@@ -1,0 +1,167 @@
+{
+  "formato": "medos-casos",
+  "version": 1,
+  "casos": [
+    {
+      "titulo": "Poliuria, dolor abdominal y respiración rápida",
+      "especialidad": "Endocrinología",
+      "dificultad": 2,
+      "materia": "Fisiología II",
+      "paciente": {
+        "edad": 19,
+        "sexo": "F"
+      },
+      "motivoConsulta": "Dolor abdominal, vómito y \"respira muy rápido\" desde hace 12 horas.",
+      "padecimientoActual": "Paciente con diabetes tipo 1 diagnosticada a los 11 años, tratada con insulina basal-bolo. Refiere 3 días de odinofagia y fiebre; por falta de apetito suspendió la insulina rápida y redujo la basal. Desde hace 2 días presenta poliuria, polidipsia y astenia. Hace 12 horas inició dolor abdominal difuso, náusea y 4 vómitos de contenido gástrico.",
+      "antecedentes": {
+        "personales": "Diabetes tipo 1 (8 años de evolución). Sin hospitalizaciones previas.",
+        "familiares": "Madre con hipotiroidismo.",
+        "medicamentos": "Insulina glargina 18 UI/noche; insulina lispro según comidas (suspendida hace 3 días).",
+        "alergias": "Negadas."
+      },
+      "exploracionFisica": "Somnolienta pero orientada. Mucosas orales secas, llenado capilar de 3 s. Respiración profunda y rápida (patrón de Kussmaul) con aliento afrutado. Abdomen con dolor difuso a la palpación, sin rebote ni rigidez. Faringe hiperémica.",
+      "signosVitales": {
+        "ta": "98/60",
+        "fc": 118,
+        "fr": 30,
+        "temp": 37.8,
+        "spo2": 98,
+        "peso": 54
+      },
+      "laboratorios": [
+        {
+          "estudio": "Glucosa sérica",
+          "valor": 482,
+          "unidad": "mg/dL",
+          "referencia": "70–99",
+          "bandera": "H"
+        },
+        {
+          "estudio": "pH arterial",
+          "valor": 7.12,
+          "unidad": "",
+          "referencia": "7.35–7.45",
+          "bandera": "L"
+        },
+        {
+          "estudio": "Bicarbonato (HCO₃⁻)",
+          "valor": 8,
+          "unidad": "mmol/L",
+          "referencia": "22–26",
+          "bandera": "L"
+        },
+        {
+          "estudio": "pCO₂",
+          "valor": 22,
+          "unidad": "mmHg",
+          "referencia": "35–45",
+          "bandera": "L"
+        },
+        {
+          "estudio": "Sodio",
+          "valor": 131,
+          "unidad": "mmol/L",
+          "referencia": "135–145",
+          "bandera": "L"
+        },
+        {
+          "estudio": "Potasio",
+          "valor": 5.6,
+          "unidad": "mmol/L",
+          "referencia": "3.5–5.0",
+          "bandera": "H"
+        },
+        {
+          "estudio": "Cloro",
+          "valor": 96,
+          "unidad": "mmol/L",
+          "referencia": "98–107",
+          "bandera": "L"
+        },
+        {
+          "estudio": "β-hidroxibutirato",
+          "valor": 5.8,
+          "unidad": "mmol/L",
+          "referencia": "< 0.6",
+          "bandera": "H"
+        },
+        {
+          "estudio": "Creatinina",
+          "valor": 1.3,
+          "unidad": "mg/dL",
+          "referencia": "0.5–1.1",
+          "bandera": "H"
+        }
+      ],
+      "pasos": [
+        {
+          "tipo": "laboratorios",
+          "pregunta": "Calcula la brecha aniónica (Na⁺ − [Cl⁻ + HCO₃⁻]). ¿Qué tipo de trastorno ácido-base predomina?",
+          "opciones": {
+            "a": "Acidosis metabólica con brecha aniónica normal (~14)",
+            "b": "Acidosis metabólica con brecha aniónica elevada (~27)",
+            "c": "Acidosis respiratoria aguda con compensación renal",
+            "d": "Alcalosis metabólica con brecha aniónica elevada"
+          },
+          "correcta": "b",
+          "explicacion": "131 − (96 + 8) = 27 mmol/L (normal aproximado 8–12). pH bajo con HCO₃⁻ bajo = acidosis metabólica; la brecha elevada indica aniones no medidos, aquí los cetoácidos (β-hidroxibutirato y acetoacetato). La pCO₂ baja es la compensación respiratoria, no el trastorno primario.",
+          "concepto": "Brecha aniónica en acidosis metabólica"
+        },
+        {
+          "tipo": "diagnostico_diferencial",
+          "pregunta": "Con estos datos, ¿cuál es el diagnóstico más probable?",
+          "opciones": {
+            "a": "Estado hiperglucémico hiperosmolar sin cetosis significativa",
+            "b": "Cetoacidosis por inanición con glucosa elevada por estrés",
+            "c": "Cetoacidosis diabética por infección y omisión de insulina",
+            "d": "Acidosis láctica por choque séptico de origen faríngeo"
+          },
+          "correcta": "c",
+          "explicacion": "Cumple los tres elementos de la cetoacidosis diabética: hiperglucemia (≥ 200 mg/dL o diabetes conocida), cetonemia (β-hidroxibutirato ≥ 3.0 mmol/L) y acidosis metabólica (pH < 7.3 y/o HCO₃⁻ < 18 mmol/L). Los desencadenantes clásicos son la infección y la omisión de insulina, ambos presentes. El estado hiperosmolar cursa sin cetoacidosis importante; la cetosis de ayuno no produce esta hiperglucemia ni este grado de acidosis.",
+          "concepto": "Criterios diagnósticos de cetoacidosis diabética"
+        },
+        {
+          "tipo": "fisiopatologia",
+          "pregunta": "¿Qué cadena explica la aparición de cetoácidos en esta paciente?",
+          "opciones": {
+            "a": "↓ insulina + ↑ glucagón → lipólisis → β-oxidación hepática → cetogénesis",
+            "b": "↑ insulina → glucólisis anaerobia → ↑ lactato → conversión hepática a acetoacetato",
+            "c": "↓ glucagón → ↓ gluconeogénesis → hipoglucemia → cetosis compensadora",
+            "d": "Vómito → pérdida de H⁺ → ↑ HCO₃⁻ → desvío del metabolismo hacia cetonas"
+          },
+          "correcta": "a",
+          "explicacion": "Sin insulina (y con más glucagón y hormonas de estrés por la infección), el tejido adiposo libera ácidos grasos. En el hígado, el cociente glucagón/insulina alto favorece su entrada a la mitocondria y la β-oxidación; el acetil-CoA excedente se convierte en cuerpos cetónicos, que son ácidos y consumen bicarbonato.",
+          "concepto": "Fisiopatología de la cetogénesis en déficit de insulina"
+        },
+        {
+          "tipo": "opcion_multiple",
+          "revelar": "Se inicia reposición con solución salina 0.9 %. Antes de comenzar la insulina en infusión, el potasio reportado es de 5.6 mmol/L.",
+          "pregunta": "¿Por qué el potasio total del cuerpo probablemente está BAJO aunque el sérico esté alto, y qué implica para el tratamiento?",
+          "opciones": {
+            "a": "El K⁺ alto indica lesión renal ya establecida: no debe darse potasio en todo el tratamiento y basta con vigilar la creatinina",
+            "b": "El K⁺ alto se debe a hemólisis de la muestra: el potasio corporal es normal y no requiere más mediciones durante la infusión",
+            "c": "La insulina eleva todavía más el K⁺ sérico, así que debe retrasarse hasta corregir por completo el pH y el bicarbonato",
+            "d": "La acidosis y el déficit de insulina sacan K⁺ de la célula y la orina lo pierde; con insulina reingresa y cae: medir y reponer"
+          },
+          "correcta": "d",
+          "explicacion": "El déficit de insulina y la hiperosmolaridad desplazan K⁺ al espacio extracelular, mientras la diuresis osmótica lo elimina: el sérico puede verse normal o alto con déficit corporal total. La insulina activa la Na⁺/K⁺-ATPasa y mete K⁺ a la célula, con riesgo de hipopotasemia y arritmias; por eso el potasio se mide antes y durante la infusión y se repone según su nivel.",
+          "concepto": "Potasio corporal total en cetoacidosis diabética"
+        }
+      ],
+      "referencias": [
+        {
+          "cita": "Umpierrez GE, Davis GM, ElSayed NA, et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care. 2024;47(8):1257–1275.",
+          "url": "https://doi.org/10.2337/dci24-0032"
+        },
+        {
+          "cita": "Hall JE, Hall ME. Guyton y Hall. Tratado de fisiología médica. 14.ª ed. Elsevier; 2021. Unidad de endocrinología: insulina, glucagón y diabetes mellitus."
+        }
+      ],
+      "etiquetas": [
+        "diabetes",
+        "ácido-base",
+        "urgencias"
+      ]
+    }
+  ]
+}
