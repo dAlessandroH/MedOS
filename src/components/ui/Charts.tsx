@@ -11,7 +11,7 @@ export interface BarSeries {
 }
 
 /** Gráfica de barras sobria (apiladas si hay varias series) con los tokens de MedOS. */
-export function SimpleBars<T extends Record<string, unknown>>({
+export function SimpleBars({
   data,
   xKey,
   series,
@@ -19,8 +19,8 @@ export function SimpleBars<T extends Record<string, unknown>>({
   unit = "",
   label,
 }: {
-  data: T[];
-  xKey: keyof T & string;
+  data: object[];
+  xKey: string;
   series: BarSeries[];
   height?: number;
   unit?: string;
