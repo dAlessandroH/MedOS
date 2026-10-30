@@ -93,7 +93,7 @@ test.describe("Ajustes", () => {
 
   test("exámenes aparecen en el Dashboard", async ({ page }) => {
     await addSubject(page, "Genética");
-    await page.getByLabel("Examen").fill("Primer parcial");
+    await page.getByLabel("Examen", { exact: true }).fill("Primer parcial");
     await page.getByRole("form", { name: "Nuevo examen" }).getByRole("button", { name: "Agregar" }).click();
     await expect(page.getByRole("list", { name: "Próximos exámenes" }).getByText("Primer parcial")).toBeVisible();
     await go(page, "/");
@@ -126,7 +126,7 @@ test.describe("Ajustes", () => {
     await expect(dialog.getByText("Materias")).toBeVisible();
     await dialog.getByRole("button", { name: "Fusionar" }).click();
     await expect(dialog.getByText(/Listo:/)).toBeVisible();
-    await dialog.getByRole("button", { name: "Cerrar" }).click();
+    await dialog.getByRole("button", { name: "Cerrar" }).last().click();
     await expect(page.getByRole("list", { name: "Materias activas" }).getByRole("listitem")).toHaveCount(1);
   });
 });
@@ -257,7 +257,7 @@ test.describe("ClinicalLab", () => {
     await expect(page.getByText("Glucosa sérica")).toBeVisible();
     await page.getByRole("button", { name: /Comenzar caso/ }).click();
 
-    await page.getByRole("button", { name: /brecha aniónica elevada/ }).click();
+    await page.getByRole("button", { name: /Acidosis metabólica con brecha aniónica elevada/ }).click();
     await expect(page.getByText("Explicación")).toBeVisible();
     await page.getByRole("button", { name: /Cetoacidosis diabética por infección/ }).click();
     await page.getByRole("button", { name: /β-oxidación hepática/ }).click();
