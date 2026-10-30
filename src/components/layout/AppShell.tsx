@@ -1,11 +1,16 @@
 "use client";
 
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Sidebar } from "./Sidebar";
 import { MobileHeader, MobileTabBar } from "./MobileNav";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  // Señal de que la app ya está interactiva (la usan las pruebas automáticas)
+  useEffect(() => {
+    document.documentElement.dataset.hydrated = "1";
+  }, []);
   return (
     <div className="flex min-h-dvh">
       <Sidebar />
