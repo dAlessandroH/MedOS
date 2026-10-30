@@ -97,11 +97,12 @@ test.describe("Ajustes", () => {
     await page.getByRole("form", { name: "Nuevo examen" }).getByRole("button", { name: "Agregar" }).click();
     await expect(page.getByRole("list", { name: "Próximos exámenes" }).getByText("Primer parcial")).toBeVisible();
     await go(page, "/");
-    await expect(page.getByText("Primer parcial")).toBeVisible();
+    await expect(page.getByText("Primer parcial", { exact: true })).toBeVisible();
   });
 
   test("nombre del perfil cambia el saludo y persiste", async ({ page }) => {
     await go(page, "/ajustes");
+    await page.waitForLoadState("networkidle");
     const name = page.getByLabel("Tu nombre");
     await name.fill("Ale");
     await name.press("Enter");
