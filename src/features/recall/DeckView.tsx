@@ -66,7 +66,7 @@ export function DeckView() {
   const router = useRouter();
   const id = params.get("id") ?? "";
   const deck = useLiveQuery(() => db.decks.get(id).then((d) => d ?? null), [id]);
-  const subject = useLiveQuery(() => (deck ? db.subjects.get(deck.subjectId).then((s) => s ?? null) : Promise.resolve(null)), [deck?.subjectId]);
+  const subject = useLiveQuery(async () => (deck ? ((await db.subjects.get(deck.subjectId)) ?? null) : null), [deck?.subjectId]);
   const allDecks = useLiveQuery(() => (deck ? listDecks(deck.subjectId) : Promise.resolve([])), [deck?.subjectId]);
   const subdecks = (allDecks ?? []).filter((d) => d.parentId === id);
   const parent = (allDecks ?? []).find((d) => d.id === deck?.parentId);
