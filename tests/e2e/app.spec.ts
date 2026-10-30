@@ -2,11 +2,24 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test, type Page } from "@playwright/test";
 
+/** Espera a que React haya terminado de hidratar la página (antes, los clics se pierden). */
+async function ready(page: Page) {
+  await page.waitForFunction(() => document.documentElement.dataset.hydrated === "1");
+}
+
 /** Ruta relativa al basePath ("/ajustes" → ./ajustes/). Acepta query (?id=…). */
 async function go(page: Page, path: string) {
-  if (path === "/") return page.goto("./");
-  const [p, q] = path.split("?");
-  return page.goto(`.${p}/${q ? `?${q}` : ""}`);
+  if (path === "/") await page.goto("./");
+  else {
+    const [p, q] = path.split("?");
+    await page.goto(`.${p}/${q ? `?${q}` : ""}`);
+  }
+  await ready(page);
+}
+
+async function reload(page: Page) {
+  await page.reload();
+  await ready(page);
 }
 
 async function navFor(page: Page) {
@@ -73,7 +86,7 @@ test.describe("Ajustes", () => {
     await input.press("Enter");
     await expect(page.getByRole("alert").filter({ hasText: "Ya tienes una materia" })).toBeVisible();
 
-    await page.reload();
+    await reload(page);
     const active = page.getByRole("list", { name: "Materias activas" });
     await expect(active.getByRole("listitem")).toHaveCount(2);
 
@@ -102,11 +115,10 @@ test.describe("Ajustes", () => {
 
   test("nombre del perfil cambia el saludo y persiste", async ({ page }) => {
     await go(page, "/ajustes");
-    await page.waitForLoadState("networkidle");
     const name = page.getByLabel("Tu nombre");
     await name.fill("Ale");
     await name.press("Enter");
-    await page.reload();
+    await reload(page);
     await expect(page.getByLabel("Tu nombre")).toHaveValue("Ale");
     await go(page, "/");
     await expect(page.getByRole("heading", { level: 1 })).toContainText(", Ale");
@@ -163,11 +175,13 @@ test.describe("NeuroRecall", () => {
     await expect(page.getByText("1 / 2")).toBeVisible();
     await page.getByRole("button", { name: /^Fácil/ }).click();
 
-    // terminar el resto de la sesión (las "Otra vez" pueden repetirse)
+    // terminar el resto de la sesión
     for (let i = 0; i < 6; i++) {
-      if (await page.getByText("Sesión terminada").isVisible()) break;
+      const done = page.getByText("Sesión terminada");
       const reveal = page.getByRole("button", { name: "Mostrar respuesta" });
-      if (await reveal.isVisible()) await reveal.click();
+      await expect(done.or(reveal)).toBeVisible();
+      if (await done.isVisible()) break;
+      await reveal.click();
       await page.getByRole("button", { name: /^Fácil/ }).click();
     }
     await expect(page.getByText("Sesión terminada")).toBeVisible();
@@ -196,7 +210,7 @@ test.describe("NeuroRecall", () => {
     await expect(editor).toBeHidden();
     await expect(page.getByText("¿Receptor de la atropina?")).toBeVisible();
 
-    await page.reload();
+    await reload(page);
     await expect(page.getByText("¿Receptor de la atropina?")).toBeVisible();
   });
 });
@@ -220,7 +234,7 @@ test.describe("FocusMD", () => {
     await expect(runner.getByText("En pausa")).toBeVisible();
 
     // recargar no pierde la sesión (vive en IndexedDB)
-    await page.reload();
+    await reload(page);
     const again = page.getByRole("region", { name: "Sesión en curso" });
     await expect(again.getByText("En pausa")).toBeVisible();
     await again.getByRole("button", { name: "Reanudar" }).click();
